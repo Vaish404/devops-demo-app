@@ -1,79 +1,115 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>DevOps Task Manager</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DevOps Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f6f9;
+        }
+
+```
+    h1 {
+        text-align: center;
+    }
+
+    form {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    input[type="text"] {
+        padding: 8px;
+        width: 300px;
+    }
+
+    button {
+        padding: 8px 15px;
+        margin-left: 5px;
+        cursor: pointer;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+    }
+
+    caption {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    th {
+        background-color: #333;
+        color: white;
+    }
+
+    .complete {
+        background-color: green;
+        color: white;
+    }
+
+    .delete {
+        background-color: red;
+        color: white;
+    }
+</style>
+```
 
 </head>
 
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
+<h1>🚀 DevOps Task Manager</h1>
 
-<h1 class="text-center mb-4">🚀 DevOps Task Manager</h1>
-
-<div class="card p-3 shadow">
-
-<form method="POST" class="d-flex gap-2">
-<input type="text" name="task" class="form-control" placeholder="Enter DevOps task..." required>
-<button class="btn btn-primary">Add Task</button>
+<form action="/add" method="post">
+    <input type="text" name="task" placeholder="Enter DevOps task..." required>
+    <button type="submit">Add Task</button>
 </form>
 
-</div>
+<table>
+    <caption>DevOps Tasks List</caption>
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
 
-<div class="mt-4">
-
-<table class="table table-striped table-hover">
-
-<thead class="table-dark">
-<tr>
-<th>Task</th>
-<th>Status</th>
-<th>Created</th>
-<th>Actions</th>
-</tr>
-</thead>
-
+```
 <tbody>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.task }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.created }}</td>
+        <td>
+            <a href="/complete/{{ loop.index0 }}">
+                <button class="complete">Complete</button>
+            </a>
 
-{% for task in tasks %}
-
-<tr>
-
-<td>{{ task.name }}</td>
-
-<td>
-
-{% if task.status == "Completed" %}
-<span class="badge bg-success">Completed</span>
-{% else %}
-<span class="badge bg-warning">Pending</span>
-{% endif %}
-
-</td>
-
-<td>{{ task.created }}</td>
-
-<td>
-
-<a href="/complete/{{ loop.index0 }}" class="btn btn-success btn-sm">Complete</a>
-
-<a href="/delete/{{ loop.index0 }}" class="btn btn-danger btn-sm">Delete</a>
-
-</td>
-
-</tr>
-
-{% endfor %}
-
+            <a href="/delete/{{ loop.index0 }}">
+                <button class="delete">Delete</button>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
 </tbody>
+```
 
 </table>
-
-</div>
-
-</div>
 
 </body>
 </html>
