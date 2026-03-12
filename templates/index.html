@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>DevOps Task Manager</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f4f6f9;
-        }
 
 ```
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 40px;
+        background-color: #f4f6f9;
+    }
+
     h1 {
         text-align: center;
     }
@@ -57,11 +58,13 @@
     .complete {
         background-color: green;
         color: white;
+        border: none;
     }
 
     .delete {
         background-color: red;
         color: white;
+        border: none;
     }
 </style>
 ```
@@ -77,18 +80,19 @@
     <button type="submit">Add Task</button>
 </form>
 
-<table>
+<table aria-describedby="table-desc">
     <caption>DevOps Tasks List</caption>
-    <thead>
-        <tr>
-            <th>Task</th>
-            <th>Status</th>
-            <th>Created</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
 
 ```
+<thead>
+    <tr>
+        <th>Task</th>
+        <th>Status</th>
+        <th>Created</th>
+        <th>Actions</th>
+    </tr>
+</thead>
+
 <tbody>
     {% for task in tasks %}
     <tr>
@@ -110,6 +114,11 @@
 ```
 
 </table>
+
+<p id="table-desc">
+This table displays the list of DevOps tasks along with their status, creation time,
+and available actions such as completing or deleting a task.
+</p>
 
 </body>
 </html>
