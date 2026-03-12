@@ -2,72 +2,70 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>DevOps Task Manager</title>
+<meta charset="UTF-8">
+<title>DevOps Task Manager</title>
 
-```
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-        background-color: #f4f6f9;
-    }
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    background-color: #f4f6f9;
+}
 
-    h1 {
-        text-align: center;
-    }
+h1 {
+    text-align: center;
+}
 
-    form {
-        margin-bottom: 20px;
-        text-align: center;
-    }
+form {
+    margin-bottom: 20px;
+    text-align: center;
+}
 
-    input[type="text"] {
-        padding: 8px;
-        width: 300px;
-    }
+input[type="text"] {
+    padding: 8px;
+    width: 300px;
+}
 
-    button {
-        padding: 8px 15px;
-        margin-left: 5px;
-        cursor: pointer;
-    }
+button {
+    padding: 8px 15px;
+    margin-left: 5px;
+    cursor: pointer;
+}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background: white;
-    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
 
-    caption {
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+caption {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
-    th, td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: center;
-    }
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
 
-    th {
-        background-color: #333;
-        color: white;
-    }
+th {
+    background-color: #333;
+    color: white;
+}
 
-    .complete {
-        background-color: green;
-        color: white;
-        border: none;
-    }
+.complete {
+    background-color: green;
+    color: white;
+    border: none;
+}
 
-    .delete {
-        background-color: red;
-        color: white;
-        border: none;
-    }
+.delete {
+    background-color: red;
+    color: white;
+    border: none;
+}
 </style>
-```
 
 </head>
 
@@ -76,49 +74,47 @@
 <h1>🚀 DevOps Task Manager</h1>
 
 <form action="/add" method="post">
-    <input type="text" name="task" placeholder="Enter DevOps task..." required>
-    <button type="submit">Add Task</button>
+<input type="text" name="task" placeholder="Enter DevOps task..." required>
+<button type="submit">Add Task</button>
 </form>
 
-<table aria-describedby="table-desc">
-    <caption>DevOps Tasks List</caption>
+<table>
+<caption>
+DevOps Tasks List — This table displays DevOps tasks along with their status,
+creation time, and available actions such as completing or deleting tasks.
+</caption>
 
-```
 <thead>
-    <tr>
-        <th>Task</th>
-        <th>Status</th>
-        <th>Created</th>
-        <th>Actions</th>
-    </tr>
+<tr>
+<th>Task</th>
+<th>Status</th>
+<th>Created</th>
+<th>Actions</th>
+</tr>
 </thead>
 
 <tbody>
-    {% for task in tasks %}
-    <tr>
-        <td>{{ task.task }}</td>
-        <td>{{ task.status }}</td>
-        <td>{{ task.created }}</td>
-        <td>
-            <a href="/complete/{{ loop.index0 }}">
-                <button class="complete">Complete</button>
-            </a>
+{% for task in tasks %}
+<tr>
+<td>{{ task.task }}</td>
+<td>{{ task.status }}</td>
+<td>{{ task.created }}</td>
+<td>
 
-            <a href="/delete/{{ loop.index0 }}">
-                <button class="delete">Delete</button>
-            </a>
-        </td>
-    </tr>
-    {% endfor %}
+<a href="/complete/{{ loop.index0 }}">
+<button class="complete">Complete</button>
+</a>
+
+<a href="/delete/{{ loop.index0 }}">
+<button class="delete">Delete</button>
+</a>
+
+</td>
+</tr>
+{% endfor %}
 </tbody>
-```
 
 </table>
-
-<p id="table-desc">
-This table displays the list of DevOps tasks along with their status, creation time,
-and available actions such as completing or deleting a task.
-</p>
 
 </body>
 </html>
